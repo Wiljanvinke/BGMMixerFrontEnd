@@ -1,0 +1,9 @@
+<ul class='songs'>
+    <li *ngFor="let song of songs">
+        <a routerLink="/detail/{{song.id}}">
+            <span class="badge">{{song.id}}</span> {{song.name}}  
+        </a> 
+        <button class="delete" title="delete song"
+            (click)="delete(song)">x</button>
+    </li>
+</ul>
