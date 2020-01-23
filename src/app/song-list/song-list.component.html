@@ -3,7 +3,7 @@
         <a routerLink="/detail/{{song.id}}">
             <span class="badge">{{song.id}}</span> {{song.name}}  
         </a> 
-        <button class="delete" title="delete song"
-            (click)="delete(song)">x</button>
+        <button class="delete" title="delete song" (click)="deleteSong(song)">x</button>
+
     </li>
 </ul>

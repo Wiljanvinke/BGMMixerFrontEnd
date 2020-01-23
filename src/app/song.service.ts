@@ -10,7 +10,7 @@ import { MessageService } from './message.service'
 })
 export class SongService {
 
-  private songsUrl = 'localhost:3306/songs';  // URL to web api
+  private songsUrl = 'http://localhost:8082/songs';  // URL to web api
 
 
   httpOptions = {
@@ -27,6 +27,19 @@ export class SongService {
       );
   }
 
+  postSong(file: File): void {
+
+  }
+
+  deleteSong(song: Song): Observable<Song> {
+    const id = typeof song === 'number' ? song : song.id;
+    const url = `${this.songsUrl}/${id}`;
+
+    return this.http.delete<Song>(url, this.httpOptions).pipe(
+      tap(_ => this.log(`delete song id=${id}`)),
+      catchError(this.handleError<Song>('deleteSong'))
+    );
+  }
   
   private log(message: string) {
     this.messageService.add(`SongService: ${message}`);

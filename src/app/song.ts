@@ -1,5 +1,7 @@
 export class Song {
     id: number;
     name: string;
-    length: number;
+    duration: number;
+    file: number;
+    stages: number[];
 }

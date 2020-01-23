@@ -21,4 +21,9 @@ export class SongListComponent implements OnInit {
     this.songService.getSongs().subscribe(songs => this.songs = songs);
   }
 
+  deleteSong(song: Song): void{
+    this.songs = this.songs.filter(s => s !== song);
+    this.songService.deleteSong(song).subscribe();
+  }
+
 }
