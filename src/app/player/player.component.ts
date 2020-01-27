@@ -9,9 +9,11 @@ import { TestBed } from '@angular/core/testing';
 })
 export class PlayerComponent implements OnInit {
   song: Song = {
-    id: 0,
+    id: 100,
     name: 'Test',
-    length: 180
+    duration: 180,
+    file: 0,
+    stages: [300,301],
   };
 
   constructor() { }
