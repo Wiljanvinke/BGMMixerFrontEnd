@@ -14,7 +14,7 @@ export class SongService {
 
 
   httpOptions = {
-    headers: new HttpHeaders({ 'content-type': 'application/json' })
+    headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };
 
   constructor(private http: HttpClient, private messageService: MessageService) { }
