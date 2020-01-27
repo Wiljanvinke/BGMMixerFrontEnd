@@ -6,6 +6,8 @@ import { AppComponent } from './app.component';
 import { PlayerComponent } from './player/player.component';
 import { SongListComponent } from './song-list/song-list.component';
 import { AppRoutingModule } from './app-routing.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatTableModule, MatFormFieldModule, MatInputModule, MatProgressSpinnerModule } from '@angular/material'; 
 
 @NgModule({
   declarations: [
@@ -17,6 +19,11 @@ import { AppRoutingModule } from './app-routing.module';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    BrowserAnimationsModule,
+    MatTableModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatProgressSpinnerModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

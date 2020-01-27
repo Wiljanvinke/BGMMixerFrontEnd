@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { Song } from '../song';
 import { SongService } from '../song.service';
+import { MatTableDataSource } from '@angular/material/table';
 
 @Component({
   selector: 'app-song-list',
@@ -10,6 +11,9 @@ import { SongService } from '../song.service';
 export class SongListComponent implements OnInit {
 
   songs: Song[];
+  //dataSource = new MatTableDataSource(this.songs);
+  displayedColumns: string[] = ['song', 'description', 'length'];
+
 
   constructor(private songService: SongService) { }
 
@@ -25,5 +29,10 @@ export class SongListComponent implements OnInit {
     this.songs = this.songs.filter(s => s !== song);
     this.songService.deleteSong(song).subscribe();
   }
+
+
+/*   applyFilter(filterValue: string) {
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+  } */
 
 }
