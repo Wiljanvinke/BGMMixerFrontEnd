@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { Location } from '@angular/common';
 import { Song } from '../song';
 import { SongService } from '../song.service';
 
@@ -13,6 +14,7 @@ export class SongDetailsComponent implements OnInit {
 
   constructor(
     songService: SongService,
+    location: Location,
   ) { }
 
   ngOnInit() {
