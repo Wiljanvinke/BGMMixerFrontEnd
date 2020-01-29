@@ -27,6 +27,10 @@ export class SongService {
       );
   }
 
+  getSong(id: number): Observable<Song> {
+    return this.http.get<Song>(this.songsUrl + '/' + id)
+  }
+
   postSong(file: File): void {
 
   }
