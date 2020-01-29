@@ -2,6 +2,7 @@ import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { Song } from '../song';
 import { SongService } from '../song.service';
 import { MatTableDataSource } from '@angular/material/table';
+import { RouterLink, RouterEvent } from '@angular/router';
 
 @Component({
   selector: 'app-song-list',
@@ -23,6 +24,9 @@ export class SongListComponent implements OnInit {
 
   getSongs(): void {
     this.songService.getSongs().subscribe(songs => this.songs = songs);
+  }
+
+  editSong(id: number): void {
   }
 
   deleteSong(song: Song): void {
