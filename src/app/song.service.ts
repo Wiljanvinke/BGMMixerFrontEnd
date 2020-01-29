@@ -35,6 +35,16 @@ export class SongService {
 
   }
 
+  updateSong(song: Song): Observable<any> {
+    const id = typeof song === 'number' ? song : song.id;
+    const url = `${this.songsUrl}/${id}`;
+    
+    return this.http.put(url, song, this.httpOptions).pipe(
+      tap(_ => this.log(`update song id=${id}`)),
+      catchError(this.handleError<Song>('updateSong'))
+    );
+  }
+
   deleteSong(song: Song): Observable<Song> {
     const id = typeof song === 'number' ? song : song.id;
     const url = `${this.songsUrl}/${id}`;

@@ -29,4 +29,12 @@ export class SongDetailsComponent implements OnInit {
     .subscribe(song => this.song = song);
   }
 
+  save(): void {
+    this.songService.updateSong(this.song).subscribe(() => this.goBack());
+  }
+  
+  goBack(): void {
+    this.location.back();
+  }
+
 }
