@@ -1,1 +1,12 @@
-<p>song-details works!</p>
+<div *ngIf="song">
+    <h2>{{song.name | uppercase}} Details</h2>
+    <div><span>id: </span>{{song.id}}</div>
+    <div>
+        <label>name:
+            <input [(ngModel)]="song.name" placeholder="name"/>
+        </label>
+    </div>
+</div>
+
+<button (click)="goBack()">go back</button>
+<button (click)="save()">save</button>
