@@ -8,14 +8,16 @@ import { SongListComponent } from './song-list/song-list.component';
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatTableModule, MatFormFieldModule, MatInputModule, MatProgressSpinnerModule, MatIconModule } from '@angular/material';
-import { MinutesSecondsPipe } from './minutes-seconds.pipe'; 
+import { MinutesSecondsPipe } from './minutes-seconds.pipe';
+import { SongDetailsComponent } from './song-details/song-details.component'; 
 
 @NgModule({
   declarations: [
     AppComponent,
     PlayerComponent,
     SongListComponent,
-    MinutesSecondsPipe
+    MinutesSecondsPipe,
+    SongDetailsComponent
   ],
   imports: [
     BrowserModule,
