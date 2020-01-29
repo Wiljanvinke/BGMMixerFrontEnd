@@ -37,12 +37,12 @@
     <!-- Duration Column -->
     <ng-container matColumnDef="length">
       <th mat-header-cell *matHeaderCellDef> Duration </th>
-      <td mat-cell *matCellDef="let song"> {{song.duration}} </td>
+      <td mat-cell *matCellDef="let song"> {{getDuration(song) | minutesSeconds}} </td>
     </ng-container>
 
     <!-- Edit Button Column -->
     <ng-container matColumnDef="edit">
-      <th mat-header-cell *matHeaderCellDef></th>
+      <th mat-header-cell *matHeaderCellDef><button mat-fab><mat-icon>add</mat-icon></button></th>
       <td mat-cell *matCellDef="let song">
         <button mat-fab><mat-icon>build</mat-icon></button> &nbsp; 
         <button mat-fab (click)="deleteSong(song)"><mat-icon>delete</mat-icon></button>

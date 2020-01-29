@@ -25,9 +25,19 @@ export class SongListComponent implements OnInit {
     this.songService.getSongs().subscribe(songs => this.songs = songs);
   }
 
-  deleteSong(song: Song): void{
+  deleteSong(song: Song): void {
     this.songs = this.songs.filter(s => s !== song);
     this.songService.deleteSong(song).subscribe();
+  }
+
+  getDuration(song: Song): String {
+    for (let i = 0; i < this.songs.length; i++) {
+      if (this.songs[i] == song) {
+        return (this.songs[i].duration / 1000).toFixed(0);
+      }
+      
+    }
+    return "Not Valid";
   }
 
 
