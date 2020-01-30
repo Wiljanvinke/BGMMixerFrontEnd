@@ -37,7 +37,7 @@ export class SongListComponent implements OnInit {
   getDuration(song: Song): String {
     for (let i = 0; i < this.songs.length; i++) {
       if (this.songs[i] == song) {
-        return (this.songs[i].duration / 1000).toFixed(0);
+        return (this.songs[i].duration).toString();
       }
       
     }
