@@ -1,12 +1,24 @@
 <div *ngIf="song">
     <h2>{{song.name | uppercase}} Details</h2>
     <div><span>id: </span>{{song.id}}</div>
+    <div><span>Duration: </span>{{song.duration | minutesSeconds}}</div>
     <div>
-        <label>name:
+        <label>Name:
             <input [(ngModel)]="song.name" placeholder="name"/>
         </label>
     </div>
+
+    <div>
+        <label>Description: <br>
+            <textarea [(ngModel)]="song.description" placeholder="description" type="text"></textarea>
+        </label>
+    </div>
+
+    <div>
+        <span>File: </span>{{song.fileId}}
+    </div>
 </div>
+<br>
 
 <button (click)="goBack()">go back</button>
 <button (click)="save()">save</button>
