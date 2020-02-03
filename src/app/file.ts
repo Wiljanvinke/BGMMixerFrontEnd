@@ -1,4 +1,4 @@
-export class File {
+export class MyFile {
     id: number;
     fileName: string;
     fileType: string;

@@ -1,6 +1,6 @@
 import { Pipe, PipeTransform, Inject } from '@angular/core';
 import { FileService } from './file.service';
-import { File } from './file';
+import { MyFile } from './file';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
@@ -10,7 +10,7 @@ import { map } from 'rxjs/operators';
 })
 export class FileIdToFilePipe implements PipeTransform {
 
-  file: File = null;
+  file: MyFile = null;
   fileString: String;
   cachedId: number;
 

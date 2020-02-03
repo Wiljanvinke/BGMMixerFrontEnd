@@ -15,7 +15,12 @@
     </div>
 
     <div>
-        <span>File: </span>{{song.fileId | fileIdToFile}}
+        <label for="file"><span>File: </span>{{song.fileId | fileIdToFile}} </label>
+        <div class="form-group">
+            <input type="file"
+                   id="file"
+                   (change)="handleFileInput($event.target.files)">
+        </div>
     </div>
 </div>
 <br>
