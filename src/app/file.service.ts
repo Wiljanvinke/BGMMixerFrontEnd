@@ -5,6 +5,7 @@ import { MessageService } from './message.service';
 import { Observable, of } from 'rxjs';
 import { MyFile } from './file';
 import { environment } from './../environments/environment';
+import { FileUploader } from 'ng2-file-upload';
 
 @Injectable({
   providedIn: 'root'
@@ -13,6 +14,8 @@ export class FileService {
 
   private url: String = environment.apiUrl;
   private filesUrl = this.url + 'files';  // URL to web api
+  public uploader: FileUploader = new FileUploader({url: environment.apiUrl + 'uploadFile', itemAlias: 'file'});
+
 
 
   httpOptions = {

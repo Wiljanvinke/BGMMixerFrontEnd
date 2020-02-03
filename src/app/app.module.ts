@@ -14,7 +14,6 @@ import { MatTableModule, MatFormFieldModule, MatInputModule, MatProgressSpinnerM
 import { MinutesSecondsPipe } from './minutes-seconds.pipe';
 import { SongDetailsComponent } from './song-details/song-details.component';
 import { FileIdToFilePipe } from './file-id-to-file.pipe'; 
-import { environment } from 'src/environments/environment';
 
 @NgModule({
   declarations: [
