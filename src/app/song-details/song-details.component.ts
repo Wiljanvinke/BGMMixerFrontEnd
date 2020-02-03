@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Location } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
+import { FileUploader } from 'ng2-file-upload/ng2-file-upload';
 import { Song } from '../song';
 import { SongService } from '../song.service';
 import { FileService } from '../file.service';
@@ -14,6 +15,7 @@ export class SongDetailsComponent implements OnInit {
 
   @Input() song: Song;
   fileToUpload: File = null;
+  //public uploader: FileUploader = new FileUploader({url: URL, itemAlias: 'photo'});
 
   constructor(
     private songService: SongService,

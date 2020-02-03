@@ -4,13 +4,14 @@ import { catchError, map, tap } from 'rxjs/operators';
 import { MessageService } from './message.service';
 import { Observable, of } from 'rxjs';
 import { MyFile } from './file';
+import { environment } from './../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class FileService {
 
-  private url = 'http://localhost:8082/'
+  private url: String = environment.apiUrl;
   private filesUrl = this.url + 'files';  // URL to web api
 
 
@@ -21,6 +22,7 @@ export class FileService {
   constructor(private http: HttpClient, private messageService: MessageService) { }
 
   getFile(id: number): Observable<MyFile> {
+    console.log(this.url);
     return this.http.get<MyFile>(`${this.filesUrl}/${id}`);
   }
 /* 

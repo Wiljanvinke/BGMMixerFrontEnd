@@ -3,14 +3,16 @@ import { Observable, of } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, map, tap } from 'rxjs/operators';
 import { Song } from './song';
-import { MessageService } from './message.service'
+import { MessageService } from './message.service';
+import { environment } from './../environments/environment';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class SongService {
 
-  private songsUrl = 'http://localhost:8082/songs';  // URL to web api
+  private songsUrl = environment.apiUrl + 'songs';  // URL to web api
 
 
   httpOptions = {

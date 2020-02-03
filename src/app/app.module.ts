@@ -4,6 +4,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+import { FileUploadModule } from 'ng2-file-upload';
+
 import { AppComponent } from './app.component';
 import { PlayerComponent } from './player/player.component';
 import { SongListComponent } from './song-list/song-list.component';
@@ -12,6 +14,7 @@ import { MatTableModule, MatFormFieldModule, MatInputModule, MatProgressSpinnerM
 import { MinutesSecondsPipe } from './minutes-seconds.pipe';
 import { SongDetailsComponent } from './song-details/song-details.component';
 import { FileIdToFilePipe } from './file-id-to-file.pipe'; 
+import { environment } from 'src/environments/environment';
 
 @NgModule({
   declarations: [
@@ -28,13 +31,15 @@ import { FileIdToFilePipe } from './file-id-to-file.pipe';
     HttpClientModule,
     FormsModule,
     BrowserAnimationsModule,
+    FileUploadModule,
     MatTableModule,
     MatFormFieldModule,
     MatInputModule,
     MatProgressSpinnerModule,
     MatIconModule,
   ],
-  providers: [],
+  providers: [
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
