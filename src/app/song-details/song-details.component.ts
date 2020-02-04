@@ -6,6 +6,7 @@ import { Song } from '../song';
 import { SongService } from '../song.service';
 import { FileService } from '../file.service';
 import { environment } from './../../environments/environment';
+import { MyFile } from '../file';
 
 @Component({
   selector: 'app-song-details',
@@ -39,6 +40,11 @@ export class SongDetailsComponent implements OnInit {
   uploadFile(): void {
     if (this.uploader.getNotUploadedItems().length == 1){
       this.uploader.uploadAll();
+      let response: MyFile;
+      this.uploader.response.subscribe(res => {
+        response = JSON.parse(res);
+        this.song.fileId = response.id;
+      });
     } else {
       this.uploader.clearQueue();
       alert("Please pick only one file");

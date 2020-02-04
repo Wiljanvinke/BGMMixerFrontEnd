@@ -12,7 +12,7 @@ export class PlayerComponent implements OnInit {
     id: 100,
     name: 'Test',
     duration: 180,
-    file: 0,
+    fileId: 0,
     stages: [300,301],
   };
 
