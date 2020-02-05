@@ -38,13 +38,14 @@ export class AudioService {
     this.state
   );
 
-  getState(): Observable<StreamState> {
+  public getState(): Observable<StreamState> {
     return this.stateChange.asObservable();
   }
 
   private streamObservable(url) {
     return new Observable(observer => {
       // Play audio
+      console.log(url);
       this.audioObj.src = url;
       this.audioObj.load();
       this.audioObj.play();

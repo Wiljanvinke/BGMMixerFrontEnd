@@ -25,6 +25,13 @@
 
   <table mat-table [dataSource]="songs" class="mat-elevation-z8">
 
+    <ng-container matColumnDef="addToPlaylist">
+      <th mat-header-cell *matHeaderCellDef></th>
+      <td mat-cell *matCellDef="let song">
+        <mat-icon color="primary" mat-list-icon (click)="addToPlaylist(song)">playlist_add</mat-icon>
+      </td>
+    </ng-container>
+
     <!-- Name Column -->
     <ng-container matColumnDef="song">
       <th mat-header-cell *matHeaderCellDef> Song </th>

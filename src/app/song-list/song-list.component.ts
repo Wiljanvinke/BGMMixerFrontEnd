@@ -13,7 +13,7 @@ export class SongListComponent implements OnInit {
 
   songs: Song[];
   //dataSource = new MatTableDataSource(this.songs);
-  displayedColumns: string[] = ['song', 'description', 'length', 'edit'];
+  displayedColumns: string[] = ['addToPlaylist', 'song', 'description', 'length', 'edit'];
 
 
   constructor(private songService: SongService) { }

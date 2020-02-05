@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { AudioService } from "../services/audio.service";
+import { SongService } from "../services/song.service";
+import { StreamState } from "../interfaces/stream-state";
+import { environment } from '../../environments/environment';
 import { Song } from '../model/song';
 import { TestBed } from '@angular/core/testing';
 
@@ -9,22 +13,74 @@ import { TestBed } from '@angular/core/testing';
 })
 export class PlayerComponent implements OnInit {
 
-  files: Array<any> = [
-    { name: "First Song", artist: "Inder" },
-    { name: "Second Song", artist: "You" }
-  ];
-  state;
+  songs: Array<any> = [];
+  state: StreamState;
   currentFile: any = {};
+  private url: String = environment.apiUrl;
 
-  constructor() { }
+  constructor(
+    public audioService: AudioService,
+    public songService: SongService
+  ) {
+    // get media files
+    songService.getSongs().subscribe(songs => {
+      this.songs = songs;
+    });
+
+    // listen to stream state
+    this.audioService.getState().subscribe(state => {
+      this.state = state;
+    });
+  }
 
   ngOnInit() {
   }
 
   isFirstPlaying() {
-    return false;
+    return this.currentFile.index === 0;
   }
+
   isLastPlaying() {
-    return true;
+    return this.currentFile.index === this.songs.length - 1;
+  }
+
+  playStream(url: String) {
+    this.audioService.playStream(url).subscribe(events => {
+      // listening for fun here
+    });
+  }
+
+  openFile(song: Song, index) {
+    this.currentFile = { index, song };
+    this.audioService.stop();
+    this.playStream("" + this.url + "downloadFile/" + song.fileId);
+  }
+  
+  play() {
+    this.audioService.play();
+  }
+
+  pause() {
+    this.audioService.pause();
+  }
+
+  stop() {
+    this.audioService.stop();
+  }
+
+  next() {
+    const index = this.currentFile.index + 1;
+    const song = this.songs[index];
+    this.openFile(song, index);
+  }
+
+  previous() {
+    const index = this.currentFile.index - 1;
+    const song = this.songs[index];
+    this.openFile(song, index);
+  }
+
+  onSliderChangeEnd(change) {
+    this.audioService.seekTo(change.value);
   }
 }
