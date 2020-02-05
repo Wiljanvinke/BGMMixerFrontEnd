@@ -5,20 +5,26 @@ import { TestBed } from '@angular/core/testing';
 @Component({
   selector: 'app-player',
   templateUrl: './player.component.html',
-  styleUrls: ['./player.component.css']
+  styleUrls: ['./player.component.scss']
 })
 export class PlayerComponent implements OnInit {
-  song: Song = {
-    id: 100,
-    name: 'Test',
-    duration: 180,
-    fileId: 0,
-    stages: [300,301],
-  };
+
+  files: Array<any> = [
+    { name: "First Song", artist: "Inder" },
+    { name: "Second Song", artist: "You" }
+  ];
+  state;
+  currentFile: any = {};
 
   constructor() { }
 
   ngOnInit() {
   }
 
+  isFirstPlaying() {
+    return false;
+  }
+  isLastPlaying() {
+    return true;
+  }
 }
