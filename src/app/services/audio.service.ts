@@ -31,6 +31,7 @@ export class AudioService {
     currentTime: undefined,
     canplay: false,
     error: false,
+    ended: false,
   };
 
   //TracksStateChanges
@@ -124,6 +125,10 @@ export class AudioService {
           this.state.currentTime
         );
         break;
+      case "ended": 
+        console.log("Song has Ended");
+        this.state.ended = true;
+        break;
       case "error":
         this.resetState();
         this.state.error = true;
@@ -141,7 +146,8 @@ export class AudioService {
       duration: undefined,
       currentTime: undefined,
       canplay: false,
-      error: false
+      error: false,
+      ended: false,
     };
   }
 

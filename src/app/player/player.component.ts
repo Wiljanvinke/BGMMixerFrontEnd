@@ -45,7 +45,13 @@ export class PlayerComponent implements OnInit {
   }
 
   playStream(url: String) {
-    this.audioService.playStream(url).subscribe(events => {
+    this.audioService.playStream(url).subscribe((events: Event) => {
+      console.log(events);
+      switch (events.type){
+        case "ended": 
+          this.onSongEnded();
+          break;
+      }
       // listening for fun here
     });
   }
@@ -82,5 +88,11 @@ export class PlayerComponent implements OnInit {
 
   onSliderChangeEnd(change) {
     this.audioService.seekTo(change.value);
+  }
+
+  onSongEnded(){
+    if(!this.isLastPlaying()){
+      this.next();
+    }
   }
 }
