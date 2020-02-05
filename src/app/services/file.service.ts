@@ -3,8 +3,8 @@ import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { catchError, map, tap } from 'rxjs/operators';
 import { MessageService } from './message.service';
 import { Observable, of } from 'rxjs';
-import { MyFile } from './file';
-import { environment } from './../environments/environment';
+import { MyFile } from '../model/file';
+import { environment } from '../../environments/environment';
 import { FileUploader } from 'ng2-file-upload';
 
 @Injectable({

@@ -1,6 +1,6 @@
 import { Pipe, PipeTransform, Inject } from '@angular/core';
-import { FileService } from './file.service';
-import { MyFile } from './file';
+import { FileService } from '../services/file.service';
+import { MyFile } from '../model/file';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 

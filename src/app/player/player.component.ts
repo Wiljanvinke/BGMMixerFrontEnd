@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Song } from '../song';
+import { Song } from '../model/song';
 import { TestBed } from '@angular/core/testing';
 
 @Component({

@@ -1,6 +1,6 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
-import { Song } from '../song';
-import { SongService } from '../song.service';
+import { Song } from '../model/song';
+import { SongService } from '../services/song.service';
 import { MatTableDataSource } from '@angular/material/table';
 import { RouterLink, RouterEvent } from '@angular/router';
 

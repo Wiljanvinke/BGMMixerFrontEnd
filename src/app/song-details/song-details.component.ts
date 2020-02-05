@@ -2,11 +2,11 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Location } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 import { FileUploader } from 'ng2-file-upload';
-import { Song } from '../song';
-import { SongService } from '../song.service';
-import { FileService } from '../file.service';
+import { Song } from '../model/song';
+import { SongService } from '../services/song.service';
+import { FileService } from '../services/file.service';
 import { environment } from './../../environments/environment';
-import { MyFile } from '../file';
+import { MyFile } from '../model/file';
 
 @Component({
   selector: 'app-song-details',

@@ -2,7 +2,8 @@ import { FileIdToFilePipe } from './file-id-to-file.pipe';
 
 describe('FileIdToFilePipe', () => {
   it('create an instance', () => {
-    const pipe = new FileIdToFilePipe();
+    let id;
+    const pipe = new FileIdToFilePipe(id);
     expect(pipe).toBeTruthy();
   });
 });
