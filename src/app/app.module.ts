@@ -13,7 +13,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { MatTableModule, MatFormFieldModule, MatInputModule, MatProgressSpinnerModule, MatIconModule } from '@angular/material';
 import { MinutesSecondsPipe } from './minutes-seconds.pipe';
 import { SongDetailsComponent } from './song-details/song-details.component';
-import { FileIdToFilePipe } from './file-id-to-file.pipe'; 
+import { FileIdToFilePipe } from './file-id-to-file.pipe';
+import { MaterialModule } from './material.module'; 
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import { FileIdToFilePipe } from './file-id-to-file.pipe';
     MatInputModule,
     MatProgressSpinnerModule,
     MatIconModule,
+    MaterialModule,
   ],
   providers: [
   ],
