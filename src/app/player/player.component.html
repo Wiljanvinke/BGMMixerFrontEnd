@@ -38,6 +38,9 @@
           <button  mat-button [disabled]="isLastPlaying()" (click)="next()">
             <mat-icon mat-list-icon>skip_next</mat-icon>
           </button>
+          <button  mat-button-toggle (click)="toggleLoop()">
+            <mat-icon mat-list-icon>loop</mat-icon>
+          </button>
         </mat-toolbar-row>
       </mat-toolbar>
     </div>

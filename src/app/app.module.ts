@@ -10,7 +10,7 @@ import { AppComponent } from './app.component';
 import { PlayerComponent } from './player/player.component';
 import { SongListComponent } from './song-list/song-list.component';
 import { AppRoutingModule } from './app-routing.module';
-import { MatTableModule, MatFormFieldModule, MatInputModule, MatProgressSpinnerModule, MatIconModule } from '@angular/material';
+import { MatTableModule, MatFormFieldModule, MatInputModule, MatProgressSpinnerModule, MatIconModule, MatButtonToggleModule } from '@angular/material';
 import { MinutesSecondsPipe } from './pipes/minutes-seconds.pipe';
 import { SongDetailsComponent } from './song-details/song-details.component';
 import { FileIdToFilePipe } from './pipes/file-id-to-file.pipe';
@@ -38,6 +38,7 @@ import { MaterialModule } from './material.module';
     MatProgressSpinnerModule,
     MatIconModule,
     MaterialModule,
+    MatButtonToggleModule,
   ],
   providers: [
   ],
