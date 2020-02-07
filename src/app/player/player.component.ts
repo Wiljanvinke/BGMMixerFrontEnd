@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { AudioService } from "../services/audio.service";
 import { SongService } from "../services/song.service";
 import { StreamState } from "../interfaces/stream-state";
@@ -12,6 +12,8 @@ import { TestBed } from '@angular/core/testing';
   styleUrls: ['./player.component.scss']
 })
 export class PlayerComponent implements OnInit {
+
+  @Input() loop: boolean;
 
   songs: Array<any> = [];
   state: StreamState;
