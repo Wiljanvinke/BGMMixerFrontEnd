@@ -3,5 +3,5 @@ export class MyFile {
     fileName: string;
     fileType: string;
     fileSize: number;
-    songs: number[];
+    songsIds: number[];
 }
