@@ -80,14 +80,18 @@ export class PlayerComponent implements OnInit {
     const index = this.currentFile.index + 1;
     const song = this.songs[index];
     this.openFile(song, index);
-    this.play();
+    if(this.state.playing){
+      this.play();
+    }
   }
 
   previous() {
     const index = this.currentFile.index - 1;
     const song = this.songs[index];
     this.openFile(song, index);
-    this.play();
+    if(this.state.playing){
+      this.play();
+    }
   }
 
   onSliderChangeEnd(change) {
