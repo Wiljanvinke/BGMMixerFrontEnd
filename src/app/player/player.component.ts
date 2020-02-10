@@ -97,4 +97,12 @@ export class PlayerComponent implements OnInit {
       this.next();
     }
   }
+
+  setStageStart(){
+
+  }
+
+  setStageEnd(){
+    
+  }
 }
