@@ -5,7 +5,8 @@
     <div class="content">
         <div class="logo">
           <mat-icon>music_note</mat-icon>
-          <div>Audio Player</div>
+          <div *ngIf="currentFile.song == null; else currentSong">Audio Player</div>
+          <ng-template #currentSong><div>{{currentFile.song.name}}</div></ng-template>
       </div>
       <mat-list color="primary">
         <h3 mat-subheader>Songs</h3>
