@@ -33,15 +33,21 @@ export class SongService {
     return this.http.get<Song>(`${this.songsUrl}/${id}`)
   }
 
-  postSong(file: File): void {
+  postSong(song: Song): Observable<Song> {
+    const id = song.fileId;
+    const url = `${this.songsUrl}/${id}`;
 
+    return this.http.post<Song>(url, song, this.httpOptions).pipe(
+      tap(_ => this.log(`post song id=${id}`)),
+      catchError(this.handleError<Song>('postSong'))
+    );
   }
 
-  updateSong(song: Song): Observable<any> {
+  updateSong(song: Song): Observable<Song> {
     const id = typeof song === 'number' ? song : song.id;
     const url = `${this.songsUrl}/${id}`;
     
-    return this.http.put(url, song, this.httpOptions).pipe(
+    return this.http.put<Song>(url, song, this.httpOptions).pipe(
       tap(_ => this.log(`update song id=${id}`)),
       catchError(this.handleError<Song>('updateSong'))
     );

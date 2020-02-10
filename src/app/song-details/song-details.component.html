@@ -1,7 +1,7 @@
 <div *ngIf="song">
     <h2>{{song.name | uppercase}} Details</h2>
-    <div><span>id: </span>{{song.id}}</div>
-    <div><span>Duration: </span>{{song.duration | minutesSeconds}}</div>
+    <div *ngIf="!newSong"><span>id: </span>{{song.id}}</div>
+    <div *ngIf="!newSong"><span>Duration: </span>{{song.duration | minutesSeconds}}</div>
     <div>
         <label>Name:
             <input [(ngModel)]="song.name" placeholder="name"/>
