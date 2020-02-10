@@ -80,12 +80,14 @@ export class PlayerComponent implements OnInit {
     const index = this.currentFile.index + 1;
     const song = this.songs[index];
     this.openFile(song, index);
+    this.play();
   }
 
   previous() {
     const index = this.currentFile.index - 1;
     const song = this.songs[index];
     this.openFile(song, index);
+    this.play();
   }
 
   onSliderChangeEnd(change) {
@@ -103,6 +105,6 @@ export class PlayerComponent implements OnInit {
   }
 
   setStageEnd(){
-    
+
   }
 }
