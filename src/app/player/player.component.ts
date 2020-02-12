@@ -5,6 +5,7 @@ import { StreamState } from "../interfaces/stream-state";
 import { environment } from '../../environments/environment';
 import { Song } from '../model/song';
 import { TestBed } from '@angular/core/testing';
+import { Playlist } from '../model/playlist';
 
 @Component({
   selector: 'app-player',
@@ -15,7 +16,8 @@ export class PlayerComponent implements OnInit {
 
   @Input() loop: boolean;
 
-  songs: Array<any> = [];
+  songs: Array<Song> = [];
+  playlist: Playlist;
   state: StreamState;
   currentFile: any = {};
   private url: String = environment.apiUrl;
@@ -25,8 +27,11 @@ export class PlayerComponent implements OnInit {
     public songService: SongService
   ) {
     // get media files
-    songService.getSongs().subscribe(songs => {
-      this.songs = songs;
+    songService.getDefaultPlaylist().subscribe(playlist => {
+          this.playlist = playlist
+      songService.getSongsFromPlaylist(this.playlist.id).subscribe(songs => {
+        this.songs = songs;
+      })
     });
 
     // listen to stream state
@@ -102,6 +107,10 @@ export class PlayerComponent implements OnInit {
     if(!this.isLastPlaying()){
       this.next();
     }
+  }
+
+  addSong(song: Song){
+    this.songs.push(song);
   }
 
   setStageStart(){

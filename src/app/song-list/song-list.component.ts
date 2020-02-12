@@ -41,6 +41,10 @@ export class SongListComponent implements OnInit {
     return "Not Valid";
   }
 
+  addToPlaylist(song: Song){
+    this.songService.addSongtoPlaylist(song);
+  }
+
 
 /*   applyFilter(filterValue: string) {
     this.dataSource.filter = filterValue.trim().toLowerCase();

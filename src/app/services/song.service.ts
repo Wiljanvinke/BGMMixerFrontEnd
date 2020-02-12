@@ -5,6 +5,7 @@ import { catchError, map, tap } from 'rxjs/operators';
 import { Song } from '../model/song';
 import { MessageService } from './message.service';
 import { environment } from '../../environments/environment';
+import { Playlist } from '../model/playlist';
 
 
 @Injectable({
@@ -13,13 +14,17 @@ import { environment } from '../../environments/environment';
 export class SongService {
 
   private songsUrl = environment.apiUrl + 'songs';  // URL to web api
+  private playlistsUrl = environment.apiUrl + 'playlists';
 
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };
 
-  constructor(private http: HttpClient, private messageService: MessageService) { }
+  constructor(
+    private http: HttpClient, 
+    private messageService: MessageService
+    ) { }
 
   getSongs(): Observable<Song[]> {
     return this.http.get<Song[]>(this.songsUrl)
@@ -31,6 +36,14 @@ export class SongService {
 
   getSong(id: number): Observable<Song> {
     return this.http.get<Song>(`${this.songsUrl}/${id}`)
+  }
+
+  getDefaultPlaylist(): Observable<Playlist> {
+    return this.http.get<Playlist>(`${this.playlistsUrl}/default`)
+  }
+
+  getSongsFromPlaylist(id: number): Observable<Song[]> {
+    return this.http.get<Song[]>(`${this.playlistsUrl}/${id}/songs`)
   }
 
   postSong(song: Song): Observable<Song> {
@@ -61,6 +74,11 @@ export class SongService {
       tap(_ => this.log(`delete song id=${id}`)),
       catchError(this.handleError<Song>('deleteSong'))
     );
+  }
+
+  addSongtoPlaylist(song: Song)//: Observable<Song> 
+  {
+    
   }
   
   private log(message: string) {
