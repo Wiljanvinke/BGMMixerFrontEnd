@@ -3,8 +3,10 @@
 <div>
 <ul class='stages'>
     <li *ngFor="let stage of stages">
+        <div>
         <span class="badge">{{stage.id}}</span> {{stage.name}}  
         <button class="delete" title="delete stage"
             (click)="delete(stage)">x</button>
+        </div>
     </li>
 </ul>

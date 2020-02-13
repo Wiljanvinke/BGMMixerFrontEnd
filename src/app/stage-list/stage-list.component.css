@@ -3,7 +3,7 @@
     margin: 0 0 2em 0;
     list-style-type: none;
     padding: 0;
-    width: 15em;
+    width: 100%;
   }
   li {
     position: relative;
@@ -65,9 +65,7 @@
   }
   
   button.delete {
-    position: relative;
-    left: 194px;
-    top: -32px;
+    float: right;
     background-color: gray !important;
     color: white;
   }
