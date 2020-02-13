@@ -42,7 +42,7 @@ export class SongListComponent implements OnInit {
   }
 
   addToPlaylist(song: Song){
-    this.songService.addSongtoPlaylist(song);
+    this.songService.addSongToPlaylist(song).subscribe();
   }
 
 

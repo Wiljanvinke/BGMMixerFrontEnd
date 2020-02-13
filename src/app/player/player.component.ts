@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, OnChanges, SimpleChange, ChangeDetectorRef } from '@angular/core';
 import { AudioService } from "../services/audio.service";
 import { SongService } from "../services/song.service";
 import { StreamState } from "../interfaces/stream-state";
@@ -6,34 +6,29 @@ import { environment } from '../../environments/environment';
 import { Song } from '../model/song';
 import { TestBed } from '@angular/core/testing';
 import { Playlist } from '../model/playlist';
+import { Observable, interval } from 'rxjs';
+import { switchMap, startWith } from 'rxjs/operators';
 
 @Component({
   selector: 'app-player',
   templateUrl: './player.component.html',
   styleUrls: ['./player.component.scss']
 })
-export class PlayerComponent implements OnInit {
+export class PlayerComponent implements OnInit, OnChanges {
 
   @Input() loop: boolean;
-
-  songs: Array<Song> = [];
   playlist: Playlist;
+  songlist$: Observable<Song[]>;
+  songs: Array<Song> = [];
   state: StreamState;
   currentFile: any = {};
   private url: String = environment.apiUrl;
 
   constructor(
     public audioService: AudioService,
-    public songService: SongService
+    public songService: SongService,
   ) {
-    // get media files
-    songService.getDefaultPlaylist().subscribe(playlist => {
-          this.playlist = playlist
-      songService.getSongsFromPlaylist(this.playlist.id).subscribe(songs => {
-        this.songs = songs;
-      })
-    });
-
+    
     // listen to stream state
     this.audioService.getState().subscribe(state => {
       this.state = state;
@@ -41,6 +36,22 @@ export class PlayerComponent implements OnInit {
   }
 
   ngOnInit() {
+    // get media files
+    this.songService.getDefaultPlaylist().subscribe(playlist => {
+      this.playlist = playlist;
+      this.songService.setActivePlayList(playlist);
+      this.songlist$ = this.songService.getSongsFromPlaylist(this.playlist.id);
+      this.songlist$.subscribe(songs => {
+        this.songs = songs;
+      });
+    });
+
+    this.songService.addedSong.subscribe(song => this.addSong(song));
+
+  }
+
+  ngOnChanges(changes: {[propKey: string]: SimpleChange}){
+
   }
 
   isFirstPlaying() {
@@ -111,6 +122,10 @@ export class PlayerComponent implements OnInit {
 
   addSong(song: Song){
     this.songs.push(song);
+  }
+
+  public getPlaylist(): Playlist {
+    return this.playlist;
   }
 
   setStageStart(){

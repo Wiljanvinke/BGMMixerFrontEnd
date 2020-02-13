@@ -1,11 +1,12 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnInit, Output, EventEmitter } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { catchError, map, tap } from 'rxjs/operators';
+import { catchError, map, tap, switchMap } from 'rxjs/operators';
 import { Song } from '../model/song';
 import { MessageService } from './message.service';
 import { environment } from '../../environments/environment';
 import { Playlist } from '../model/playlist';
+import { PlayerComponent } from '../player/player.component';
 
 
 @Injectable({
@@ -15,6 +16,9 @@ export class SongService {
 
   private songsUrl = environment.apiUrl + 'songs';  // URL to web api
   private playlistsUrl = environment.apiUrl + 'playlists';
+  private activePlaylist: Playlist;
+  @Output()
+  addedSong = new EventEmitter<Song>();
 
 
   httpOptions = {
@@ -23,7 +27,7 @@ export class SongService {
 
   constructor(
     private http: HttpClient, 
-    private messageService: MessageService
+    private messageService: MessageService,
     ) { }
 
   getSongs(): Observable<Song[]> {
@@ -76,9 +80,19 @@ export class SongService {
     );
   }
 
-  addSongtoPlaylist(song: Song)//: Observable<Song> 
-  {
-    
+  setActivePlayList(playlist: Playlist) {
+    this.activePlaylist = playlist;
+    console.log("Playlist: " + this.activePlaylist.id)
+  }
+
+  addSongToPlaylist(song: Song): Observable<Playlist> {
+    const destUrl = `${this.playlistsUrl}/${this.activePlaylist.id}/${song.id}`
+    console.log(`Adding Song ${song.id} to playlist at url: ${destUrl}`)
+    return this.http.put<Playlist>(destUrl, null, this.httpOptions).pipe(
+      tap(_ => {this.log(`add song id=${song.id}`);
+        this.addedSong.emit(song);
+    }),
+      catchError(this.handleError<Playlist>('addSong')))
   }
   
   private log(message: string) {
