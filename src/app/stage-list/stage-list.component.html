@@ -1,1 +1,10 @@
-<p>stage-list works!</p>
+<h2>Stages</h2>
+
+<div>
+<ul class='stages'>
+    <li *ngFor="let stage of stages">
+        <span class="badge">{{stage.id}}</span> {{stage.name}}  
+        <button class="delete" title="delete stage"
+            (click)="delete(stage)">x</button>
+    </li>
+</ul>

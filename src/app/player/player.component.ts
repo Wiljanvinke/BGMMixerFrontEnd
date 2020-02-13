@@ -14,7 +14,7 @@ import { switchMap, startWith } from 'rxjs/operators';
   templateUrl: './player.component.html',
   styleUrls: ['./player.component.scss']
 })
-export class PlayerComponent implements OnInit, OnChanges {
+export class PlayerComponent implements OnInit {
 
   @Input() loop: boolean;
   playlist: Playlist;
@@ -50,10 +50,6 @@ export class PlayerComponent implements OnInit, OnChanges {
 
   }
 
-  ngOnChanges(changes: {[propKey: string]: SimpleChange}){
-
-  }
-
   isFirstPlaying() {
     return this.currentFile.index === 0;
   }
@@ -78,6 +74,7 @@ export class PlayerComponent implements OnInit, OnChanges {
     this.currentFile = { index, song };
     this.audioService.stop();
     this.playStream("" + this.url + "downloadFile/" + song.fileId);
+    this.songService.setActiveSong(song);
   }
   
   play() {
