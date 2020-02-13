@@ -15,12 +15,14 @@ import { MinutesSecondsPipe } from './pipes/minutes-seconds.pipe';
 import { SongDetailsComponent } from './song-details/song-details.component';
 import { FileIdToFilePipe } from './pipes/file-id-to-file.pipe';
 import { MaterialModule } from './material.module'; 
+import { StageListComponent } from './stage-list/stage-list.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     PlayerComponent,
     SongListComponent,
+    StageListComponent,
     MinutesSecondsPipe,
     SongDetailsComponent,
     FileIdToFilePipe

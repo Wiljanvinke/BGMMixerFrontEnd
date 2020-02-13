@@ -3,10 +3,15 @@
       <span>Audio Player</span>
     </mat-toolbar>
     <div class="content">
-        <div class="logo">
+      <div class="top">
+        <div class="logo column">
           <mat-icon>music_note</mat-icon>
           <div *ngIf="currentFile.song == null; else currentSong">Audio Player</div>
           <ng-template #currentSong><div>{{currentFile.song.name}}</div></ng-template>
+        </div>
+        <div class="stageList column">
+          <app-stage-list></app-stage-list>
+        </div>
       </div>
       <mat-list color="primary">
         <h3 mat-subheader>Songs</h3>
