@@ -46,7 +46,7 @@ export class PlayerComponent implements OnInit, OnChanges {
       });
     });
 
-    this.songService.addedSong.subscribe(song => this.addSong(song));
+    this.songService.songAdded().subscribe(song => this.addSong(song));
 
   }
 

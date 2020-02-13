@@ -18,7 +18,7 @@ export class SongService {
   private playlistsUrl = environment.apiUrl + 'playlists';
   private activePlaylist: Playlist;
   @Output()
-  addedSong = new EventEmitter<Song>();
+  private addedSong = new EventEmitter<Song>();
 
 
   httpOptions = {
@@ -85,12 +85,16 @@ export class SongService {
     console.log("Playlist: " + this.activePlaylist.id)
   }
 
+  songAdded(): EventEmitter<Song> {
+    return this.addedSong;
+  }
+
   addSongToPlaylist(song: Song): Observable<Playlist> {
     const destUrl = `${this.playlistsUrl}/${this.activePlaylist.id}/${song.id}`
     console.log(`Adding Song ${song.id} to playlist at url: ${destUrl}`)
     return this.http.put<Playlist>(destUrl, null, this.httpOptions).pipe(
       tap(_ => {this.log(`add song id=${song.id}`);
-        this.addedSong.emit(song);
+        this.songAdded().emit(song);
     }),
       catchError(this.handleError<Playlist>('addSong')))
   }
