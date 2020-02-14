@@ -2,7 +2,9 @@
 
 <div *ngIf="currentFile">
 <ul class='stages'>
-    <li *ngFor="let stage of stages">
+    <li *ngFor="let stage of stages" 
+        [class.selected]="stage === selectedStage"
+        (click)="selectStage(stage)">
         <div>
             <span class="badge">{{stage.id}}</span> {{stage.name}}  
             <button class="delete" title="delete stage" (click)="deleteStage(stage)">x</button>
