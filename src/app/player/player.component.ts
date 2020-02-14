@@ -60,7 +60,7 @@ export class PlayerComponent implements OnInit {
 
   playStream(url: String) {
     this.audioService.playStream(url).subscribe((events: Event) => {
-      console.log(events);
+      //console.log(events);
       switch (events.type){
         case "ended": 
           this.onSongEnded();
