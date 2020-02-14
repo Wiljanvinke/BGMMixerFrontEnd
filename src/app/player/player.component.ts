@@ -127,13 +127,11 @@ export class PlayerComponent implements OnInit {
   }
 
   validStartTime(currentTime: number, stage: Stage): boolean {
-    console.log(`validStartTime started`)
     return !(stage != null &&
       currentTime < stage.endTime)
   }
 
   validEndTime(currentTime: number, stage: Stage): boolean {
-    console.log(`validStartTime started`)
     return !(stage != null &&
       currentTime > stage.startTime)
   }
