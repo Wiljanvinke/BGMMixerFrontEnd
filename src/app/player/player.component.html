@@ -10,7 +10,7 @@
           <ng-template #currentSong><div>{{currentFile.song.name}}</div></ng-template>
         </div>
         <div class="stageList column">
-          <app-stage-list></app-stage-list>
+          <app-stage-list [currentFile]="currentFile"></app-stage-list>
         </div>
       </div>
       <mat-list color="primary">

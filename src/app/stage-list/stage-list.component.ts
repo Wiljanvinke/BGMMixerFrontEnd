@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { SongService } from '../services/song.service';
 import { Stage } from '../model/stage';
 import { Song } from '../model/song';
@@ -8,23 +8,31 @@ import { Song } from '../model/song';
   templateUrl: './stage-list.component.html',
   styleUrls: ['./stage-list.component.css']
 })
-export class StageListComponent implements OnInit {
+export class StageListComponent implements OnInit, OnChanges {
 
   private stages: Stage[];
+  @Input() private currentFile;
   private activeSong: Song;
 
   constructor(private songService: SongService) { }
 
   ngOnInit() {
-    this.songService.songSelected().subscribe(song => {
+/*     this.songService.songSelected().subscribe(song => {
       console.log("New Song Selected")
       this.activeSong = song;
-      this.songService.getActiveSongStages()
+      this.songService.getStages(this.currentFile.song.id)
         .subscribe(stages => this.stages = stages)
       }
     );
     this.songService.songSelected().subscribe(song => this.activeSong = song);
     this.songService.stageDeleted().subscribe(() => this.getStages(this.activeSong.id));
+ */  }
+
+  ngOnChanges(changes: SimpleChanges){
+    if(changes.currentFile.currentValue.song != null){
+      this.songService.getStages(changes.currentFile.currentValue.song.id)
+      .subscribe(stages => this.stages = stages)
+    }
   }
 
   getStages(songId: number){

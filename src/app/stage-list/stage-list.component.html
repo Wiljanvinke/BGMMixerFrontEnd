@@ -4,9 +4,8 @@
 <ul class='stages'>
     <li *ngFor="let stage of stages">
         <div>
-        <span class="badge">{{stage.id}}</span> {{stage.name}}  
-        <button class="delete" title="delete stage"
-            (click)="deleteStage(stage)">x</button>
+            <span class="badge">{{stage.id}}</span> {{stage.name}}  
+            <button class="delete" title="delete stage" (click)="deleteStage(stage)">x</button>
         </div>
     </li>
 </ul>

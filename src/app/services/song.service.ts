@@ -20,7 +20,6 @@ export class SongService {
   private stageUrl = environment.apiUrl + 'stages'
   private activePlaylist: Playlist;
   private activeSong: Song;
-  @Output()
   private addedSong = new EventEmitter<Song>();
   private selectedSong = new EventEmitter<Song>(); 
   private deletedStage = new EventEmitter<Stage>();

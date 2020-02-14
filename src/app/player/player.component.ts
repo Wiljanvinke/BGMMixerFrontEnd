@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, OnChanges, SimpleChange, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, Input, OnChanges, SimpleChange, ChangeDetectorRef, Output } from '@angular/core';
 import { AudioService } from "../services/audio.service";
 import { SongService } from "../services/song.service";
 import { StreamState } from "../interfaces/stream-state";
