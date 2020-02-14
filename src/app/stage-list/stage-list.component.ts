@@ -23,7 +23,7 @@ export class StageListComponent implements OnInit {
         .subscribe(stages => this.stages = stages)
       }
     );
-
+    this.songService.songSelected().subscribe(song => this.activeSong = song);
     this.songService.stageDeleted().subscribe(() => this.getStages(this.activeSong.id));
   }
 
