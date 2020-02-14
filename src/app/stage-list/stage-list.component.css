@@ -69,6 +69,12 @@
     background-color: gray !important;
     color: white;
   }
+
+  button.add {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    }
   
   table {
     width: 100%;
