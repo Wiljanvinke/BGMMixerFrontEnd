@@ -12,21 +12,11 @@ export class StageListComponent implements OnInit, OnChanges {
 
   private stages: Stage[];
   @Input() private currentFile;
-  private activeSong: Song;
 
   constructor(private songService: SongService) { }
 
   ngOnInit() {
-/*     this.songService.songSelected().subscribe(song => {
-      console.log("New Song Selected")
-      this.activeSong = song;
-      this.songService.getStages(this.currentFile.song.id)
-        .subscribe(stages => this.stages = stages)
-      }
-    );
-    this.songService.songSelected().subscribe(song => this.activeSong = song);
-    this.songService.stageDeleted().subscribe(() => this.getStages(this.activeSong.id));
- */  }
+  }
 
   ngOnChanges(changes: SimpleChanges){
     if(changes.currentFile.currentValue.song != null){
@@ -36,7 +26,7 @@ export class StageListComponent implements OnInit, OnChanges {
   }
 
   getStages(songId: number){
-    this.songService.getStages(songId)
+    this.songService.getStages(this.currentFile.song.id)
       .subscribe(stages => this.stages = stages);
   }
 

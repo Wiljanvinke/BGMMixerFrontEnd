@@ -1,6 +1,6 @@
 <h2>Stages <button class="add" (click)="newStage()"><mat-icon>add</mat-icon></button></h2>
 
-<div>
+<div *ngIf="currentFile">
 <ul class='stages'>
     <li *ngFor="let stage of stages">
         <div>
