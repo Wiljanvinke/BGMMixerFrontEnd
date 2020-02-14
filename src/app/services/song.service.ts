@@ -23,6 +23,7 @@ export class SongService {
   @Output()
   private addedSong = new EventEmitter<Song>();
   private selectedSong = new EventEmitter<Song>(); 
+  private deletedStage = new EventEmitter<Stage>();
 
 
   httpOptions = {
@@ -103,6 +104,10 @@ export class SongService {
     return this.addedSong;
   }
 
+  stageDeleted(): EventEmitter<Stage> {
+    return this.deletedStage;
+  }
+
   addSongToPlaylist(song: Song): Observable<Playlist> {
     const destUrl = `${this.playlistsUrl}/${this.activePlaylist.id}/${song.id}`
     console.log(`Adding Song ${song.id} to playlist at url: ${destUrl}`)
@@ -118,8 +123,20 @@ export class SongService {
     return this.http.get<Stage[]>(destUrl, this.httpOptions)
   }
 
+  getActiveSong(): Song {
+    return this.activeSong;
+  }
+
   getActiveSongStages(): Observable<Stage[]> {
     return this.getStages(this.activeSong.id);
+  }
+
+  deleteStage(stage: Stage): Observable<Stage> {
+    return this.http.delete<Stage>(`${this.stageUrl}/${stage.id}`, this.httpOptions).pipe(
+      tap(_ => {this.log(`add song id=${stage.id}`);
+        this.stageDeleted().emit(stage);
+    }),
+      catchError(this.handleError<Stage>('addSong')));
   }
   
   private log(message: string) {
