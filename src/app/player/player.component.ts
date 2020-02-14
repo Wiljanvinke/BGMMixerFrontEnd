@@ -8,6 +8,7 @@ import { TestBed } from '@angular/core/testing';
 import { Playlist } from '../model/playlist';
 import { Observable, interval } from 'rxjs';
 import { switchMap, startWith } from 'rxjs/operators';
+import { Stage } from '../model/stage';
 
 @Component({
   selector: 'app-player',
@@ -125,11 +126,15 @@ export class PlayerComponent implements OnInit {
     return this.playlist;
   }
 
-  setStageStart(){
-
+  validStartTime(currentTime: number, stage: Stage): boolean {
+    console.log(`validStartTime started`)
+    return !(stage != null &&
+      currentTime < stage.endTime)
   }
 
-  setStageEnd(){
-
+  validEndTime(currentTime: number, stage: Stage): boolean {
+    console.log(`validStartTime started`)
+    return !(stage != null &&
+      currentTime > stage.startTime)
   }
 }
