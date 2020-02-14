@@ -1,0 +1,13 @@
+<h2>Stages <button class="add" (click)="newStage()"><mat-icon>add</mat-icon></button></h2>
+
+<div *ngIf="currentFile">
+<ul class='stages'>
+    <li *ngFor="let stage of stages" 
+        [class.selected]="stage === selectedStage"
+        (click)="selectStage(stage)">
+        <div>
+            <span class="badge">{{stage.id}}</span> {{stage.name}}  
+            <button class="delete" title="delete stage" (click)="deleteStage(stage)">x</button>
+        </div>
+    </li>
+</ul>

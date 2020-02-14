@@ -1,7 +1,7 @@
 <div *ngIf="song">
     <h2>{{song.name | uppercase}} Details</h2>
-    <div><span>id: </span>{{song.id}}</div>
-    <div><span>Duration: </span>{{song.duration | minutesSeconds}}</div>
+    <div *ngIf="!newSong"><span>id: </span>{{song.id}}</div>
+    <div *ngIf="!newSong"><span>Duration: </span>{{song.duration | minutesSeconds}}</div>
     <div>
         <label>Name:
             <input [(ngModel)]="song.name" placeholder="name"/>
@@ -15,7 +15,13 @@
     </div>
 
     <div>
-        <span>File: </span>{{song.fileId}}
+        <span>File: </span>{{song.fileId | fileIdToFile}} <br>
+        <input type="file" name="file" ng2FileSelect [uploader]="uploader" />
+        <button type="button" class="btn btn-success btn-s" 
+        (click)="uploadFile()" 
+        [disabled]="!uploader.getNotUploadedItems().length" >
+            Upload new Song
+        </button>
     </div>
 </div>
 <br>

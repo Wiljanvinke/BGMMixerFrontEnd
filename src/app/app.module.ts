@@ -4,21 +4,28 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+import { FileUploadModule } from 'ng2-file-upload';
+
 import { AppComponent } from './app.component';
 import { PlayerComponent } from './player/player.component';
 import { SongListComponent } from './song-list/song-list.component';
 import { AppRoutingModule } from './app-routing.module';
-import { MatTableModule, MatFormFieldModule, MatInputModule, MatProgressSpinnerModule, MatIconModule } from '@angular/material';
-import { MinutesSecondsPipe } from './minutes-seconds.pipe';
-import { SongDetailsComponent } from './song-details/song-details.component'; 
+import { MatTableModule, MatFormFieldModule, MatInputModule, MatProgressSpinnerModule, MatIconModule, MatButtonToggleModule } from '@angular/material';
+import { MinutesSecondsPipe } from './pipes/minutes-seconds.pipe';
+import { SongDetailsComponent } from './song-details/song-details.component';
+import { FileIdToFilePipe } from './pipes/file-id-to-file.pipe';
+import { MaterialModule } from './material.module'; 
+import { StageListComponent } from './stage-list/stage-list.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     PlayerComponent,
     SongListComponent,
+    StageListComponent,
     MinutesSecondsPipe,
-    SongDetailsComponent
+    SongDetailsComponent,
+    FileIdToFilePipe
   ],
   imports: [
     BrowserModule,
@@ -26,13 +33,17 @@ import { SongDetailsComponent } from './song-details/song-details.component';
     HttpClientModule,
     FormsModule,
     BrowserAnimationsModule,
+    FileUploadModule,
     MatTableModule,
     MatFormFieldModule,
     MatInputModule,
     MatProgressSpinnerModule,
     MatIconModule,
+    MaterialModule,
+    MatButtonToggleModule,
   ],
-  providers: [],
+  providers: [
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

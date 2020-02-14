@@ -7,6 +7,7 @@ import { SongDetailsComponent } from './song-details/song-details.component';
 const routes: Routes = [
   { path: '', redirectTo: '/songlist', pathMatch: 'full' },
   { path: 'songlist', component: SongListComponent },
+  { path: 'newsong', component: SongDetailsComponent },
   { path: 'song/:id', component: SongDetailsComponent },
 ];
 

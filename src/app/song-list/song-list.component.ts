@@ -1,6 +1,6 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
-import { Song } from '../song';
-import { SongService } from '../song.service';
+import { Song } from '../model/song';
+import { SongService } from '../services/song.service';
 import { MatTableDataSource } from '@angular/material/table';
 import { RouterLink, RouterEvent } from '@angular/router';
 
@@ -13,7 +13,7 @@ export class SongListComponent implements OnInit {
 
   songs: Song[];
   //dataSource = new MatTableDataSource(this.songs);
-  displayedColumns: string[] = ['song', 'description', 'length', 'edit'];
+  displayedColumns: string[] = ['addToPlaylist', 'song', 'description', 'length', 'edit'];
 
 
   constructor(private songService: SongService) { }
@@ -24,9 +24,6 @@ export class SongListComponent implements OnInit {
 
   getSongs(): void {
     this.songService.getSongs().subscribe(songs => this.songs = songs);
-  }
-
-  editSong(id: number): void {
   }
 
   deleteSong(song: Song): void {
@@ -42,6 +39,10 @@ export class SongListComponent implements OnInit {
       
     }
     return "Not Valid";
+  }
+
+  addToPlaylist(song: Song){
+    this.songService.addSongToPlaylist(song).subscribe();
   }
 
 

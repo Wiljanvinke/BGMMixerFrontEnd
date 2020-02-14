@@ -1,1 +1,61 @@
-<p>player works!</p>
+<div class="container">
+    <mat-toolbar color="primary" class="main-toolbar">
+      <span>Audio Player</span>
+    </mat-toolbar>
+    <div class="content">
+      <div class="top">
+        <div class="logo column">
+          <mat-icon>music_note</mat-icon>
+          <div *ngIf="currentFile.song == null; else currentSong">Audio Player</div>
+          <ng-template #currentSong><div>{{currentFile.song.name}}</div></ng-template>
+        </div>
+        <div class="stageList column">
+          <app-stage-list [currentFile]="currentFile" #stagelist></app-stage-list>
+        </div>
+      </div>
+      <mat-list color="primary">
+        <h3 mat-subheader>Songs</h3>
+        <mat-list-item *ngFor="let song of songs; let i = index" (click)="openFile(song, i)">
+          <mat-icon color="primary" mat-list-icon>music_note</mat-icon>
+          <h4 mat-line>{{ song.name }}</h4>
+          <mat-icon color="primary" *ngIf="currentFile.index === i && !state?.error">volume_up</mat-icon>
+          <h6 *ngIf="currentFile.index === i && state?.error">ERROR</h6>
+          <mat-divider></mat-divider>
+        </mat-list-item>
+      </mat-list>
+    </div>
+    <div class="media-footer">
+      <mat-toolbar color="primary">
+        <mat-toolbar-row>
+           {{ state?.readableCurrentTime }}
+           <mat-slider class="time-slider" min="0" [max]="state?.duration" step="1" [value]="state?.currentTime" (input)="onSliderChangeEnd($event)" [disabled]="state?.error || currentFile.index === undefined"></mat-slider>
+           {{ state?.readableDuration }}
+        </mat-toolbar-row>
+        <mat-toolbar-row class="media-action-bar">
+          <button mat-button [disabled]="isFirstPlaying() || currentFile.song == null" (click)="previous()">
+            <mat-icon mat-list-icon>skip_previous</mat-icon>
+          </button>
+          <button mat-button (click)="play()" [disabled]="state?.error || currentFile.song == null" *ngIf="!state?.playing">
+            <mat-icon mat-list-icon>play_circle_filled</mat-icon>
+          </button>
+          <button mat-button (click)="pause()" *ngIf="state?.playing">
+            <mat-icon mat-list-icon>pause</mat-icon>
+          </button>
+          <button  mat-button [disabled]="isLastPlaying() || currentFile.song == null" (click)="next()">
+            <mat-icon mat-list-icon>skip_next</mat-icon>
+          </button>
+          <mat-button-toggle mat-button [checked]="loop">
+            <mat-icon mat-list-icon>loop</mat-icon>
+          </mat-button-toggle>
+          <button mat-button [disabled]="validStartTime(state?.currentTime, stagelist.getSelectedStage())" 
+            (click)=stagelist.setStageStart(state?.currentTime)>
+            <mat-icon mat-list-icon>label</mat-icon>
+          </button>
+          <button mat-button [disabled]="validEndTime(state?.currentTime, stagelist.getSelectedStage())"
+            (click)=stagelist.setStageEnd(state?.currentTime)>
+            <mat-icon mat-list-icon>label_off</mat-icon>
+          </button>
+        </mat-toolbar-row>
+      </mat-toolbar>
+    </div>
+</div>
