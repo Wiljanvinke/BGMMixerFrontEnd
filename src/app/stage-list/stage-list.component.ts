@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, OnChanges, SimpleChanges, Output } from '@angular/core';
+import { Component, OnInit, Input, OnChanges, SimpleChanges, Output, EventEmitter } from '@angular/core';
 import { SongService } from '../services/song.service';
 import { Stage } from '../model/stage';
 import { Song } from '../model/song';
@@ -11,7 +11,7 @@ import { Song } from '../model/song';
 export class StageListComponent implements OnInit, OnChanges {
 
   private stages: Stage[];
-  @Output() private selectedStage: Stage;
+  private selectedStage: Stage;
   @Input() private currentFile;
 
   constructor(private songService: SongService) { }
@@ -46,7 +46,21 @@ export class StageListComponent implements OnInit, OnChanges {
 
   selectStage(stage: Stage): void {
     this.selectedStage = stage;
-    console.log(this.selectedStage.name);
   }
+
+  setStageStart(currentTime: number){
+    if(currentTime > 0){
+      this.selectedStage.startTime = currentTime;
+      console.log(`Set Stage Start at ${this.selectedStage.startTime}`);
+    } else {
+      
+    }
+  }
+
+  setStageEnd(currentTime: number){
+    this.selectedStage.endTime = currentTime;
+    console.log(`Set Stage End at ${this.selectedStage.endTime}`);
+  }
+
 
 }
