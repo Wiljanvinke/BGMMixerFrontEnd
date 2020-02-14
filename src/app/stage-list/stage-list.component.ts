@@ -49,12 +49,8 @@ export class StageListComponent implements OnInit, OnChanges {
   }
 
   setStageStart(currentTime: number){
-    if(currentTime > 0){
       this.selectedStage.startTime = currentTime;
       console.log(`Set Stage Start at ${this.selectedStage.startTime}`);
-    } else {
-      
-    }
   }
 
   setStageEnd(currentTime: number){
