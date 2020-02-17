@@ -17,12 +17,13 @@ import { Stage } from '../model/stage';
 })
 export class PlayerComponent implements OnInit {
 
-  @Input() loop: boolean;
+  @Input() loop: Boolean;
   playlist: Playlist;
   songlist$: Observable<Song[]>;
   songs: Array<Song> = [];
   state: StreamState;
   currentFile: any = {};
+  currentStage: Stage;
   private url: String = environment.apiUrl;
 
   constructor(
@@ -47,7 +48,8 @@ export class PlayerComponent implements OnInit {
       });
     });
 
-    this.songService.songAdded().subscribe(song => this.addSong(song));
+    this.songService.songAdded().subscribe((song: Song) => this.addSong(song));
+    this.songService.onStageChange().subscribe((stage: Stage) => this.currentStage = stage);
 
   }
 
@@ -66,6 +68,8 @@ export class PlayerComponent implements OnInit {
         case "ended": 
           this.onSongEnded();
           break;
+        case "timeupdate":
+          this.checkLoop();
       }
       // listening for fun here
     });
@@ -134,5 +138,11 @@ export class PlayerComponent implements OnInit {
   validEndTime(currentTime: number, stage: Stage): boolean {
     return !(stage != null &&
       currentTime > stage.startTime)
+  }
+  
+  checkLoop(){
+    if(this.loop && this.state.currentTime >= this.currentStage.endTime) {
+      this.audioService.seekTo(this.currentStage.startTime);
+    }
   }
 }

@@ -23,7 +23,7 @@ export class SongService {
   private addedSong = new EventEmitter<Song>();
   private selectedSong = new EventEmitter<Song>(); 
   private deletedStage = new EventEmitter<Stage>();
-
+  private stageChange = new EventEmitter<Stage>();
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -105,6 +105,10 @@ export class SongService {
 
   stageDeleted(): EventEmitter<Stage> {
     return this.deletedStage;
+  }
+
+  onStageChange(): EventEmitter<Stage> {
+    return this.stageChange;
   }
 
   addSongToPlaylist(song: Song): Observable<Playlist> {

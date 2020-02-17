@@ -13,6 +13,7 @@ export class StageListComponent implements OnInit, OnChanges {
   private stages: Stage[];
   private selectedStage: Stage;
   @Input() private currentFile;
+  private stageChange = new EventEmitter<Stage>();
 
   constructor(private songService: SongService) { }
 
@@ -46,18 +47,20 @@ export class StageListComponent implements OnInit, OnChanges {
 
   selectStage(stage: Stage): void {
     this.selectedStage = stage;
+    this.songService.onStageChange().emit(this.selectedStage);
   }
 
   setStageStart(currentTime: number){
-      this.selectedStage.startTime = currentTime;
-      console.log(`Set Stage Start at ${this.selectedStage.startTime}`);
-      this.songService.updateStage(this.selectedStage).subscribe();
+    this.selectedStage.startTime = currentTime;
+    console.log(`Set Stage Start at ${this.selectedStage.startTime}`);
+    this.songService.updateStage(this.selectedStage).subscribe();
+    this.songService.onStageChange().emit(this.selectedStage);
   }
 
   setStageEnd(currentTime: number){
     this.selectedStage.endTime = currentTime;
     console.log(`Set Stage End at ${this.selectedStage.endTime}`);
     this.songService.updateStage(this.selectedStage).subscribe();
-
+    this.songService.onStageChange().emit(this.selectedStage);
   }
 }
