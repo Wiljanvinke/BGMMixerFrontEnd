@@ -13,7 +13,6 @@ export class StageListComponent implements OnInit, OnChanges {
   private stages: Stage[];
   private selectedStage: Stage;
   @Input() private currentFile;
-  private stageChange = new EventEmitter<Stage>();
 
   constructor(private songService: SongService) { }
 
