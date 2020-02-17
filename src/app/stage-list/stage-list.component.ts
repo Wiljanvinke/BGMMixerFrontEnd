@@ -51,12 +51,13 @@ export class StageListComponent implements OnInit, OnChanges {
   setStageStart(currentTime: number){
       this.selectedStage.startTime = currentTime;
       console.log(`Set Stage Start at ${this.selectedStage.startTime}`);
+      this.songService.updateStage(this.selectedStage).subscribe();
   }
 
   setStageEnd(currentTime: number){
     this.selectedStage.endTime = currentTime;
     console.log(`Set Stage End at ${this.selectedStage.endTime}`);
+    this.songService.updateStage(this.selectedStage).subscribe();
+
   }
-
-
 }

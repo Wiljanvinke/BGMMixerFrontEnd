@@ -142,6 +142,13 @@ export class SongService {
     this.messageService.add(`SongService: ${message}`);
   }
 
+  updateStage(stage: Stage): Observable<Stage>{
+    const destUrl = `${this.stageUrl}/${stage.id}`;
+    const json = JSON.stringify(stage);
+    console.log(json);
+    return this.http.put<Stage>(destUrl, json, this.httpOptions);
+  }
+
   /**
  * Handle Http operation that failed.
  * Let the app continue.
